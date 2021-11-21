@@ -1,0 +1,18 @@
+{
+  "name": "A2DiamondKata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^27.0.3"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}
