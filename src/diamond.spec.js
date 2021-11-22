@@ -6,16 +6,12 @@ const { diamond } = require('./diamond.js');
 
 // Aufgabe a
 describe('charRange', () => {
-    it('should throw a TypeError when input is empty', () => {
-        expect(() => charRange()).toThrow(TypeError);
-    })
-
     it('should throw a TypeError when input is not a string', () => {
-        expect(() => charRange([])).toThrow(TypeError);
+        expect(() => charRange(3)).toThrow('Input is not a string.');
     })
 
     it('should throw an error for invalid character', () => {
-        expect(() => charRange('3')).toThrowError;
+        expect(() => charRange('3')).toThrow('Input is not an alphabetic character.');
     })
 
     it('should return an array containing A', () => {
@@ -109,20 +105,20 @@ describe('diamond', () => {
         expect(mockLog.mock.calls[0][0]).toBe('--A--\n-B-B-\nC---C\n-B-B-\n--A--\n');
     })
 
-    it('should print error message: not a string', () => {
+    it('should print error message: No input given.', () => {
         
         const mockLog = jest.fn();
         
-        diamondString = diamond([], mockLog);
+        diamondString = diamond('', mockLog);
         
-        expect(mockLog.mock.calls[0][0]).toBe('TypeError: Input is not a string.');
+        expect(mockLog.mock.calls[0][0]).toBe('TypeError: No input given.');
     })
 
     it('should print error message: not an alphabetic character', () => {
         
         const mockLog = jest.fn();
         
-        diamondString = diamond('', mockLog);
+        diamondString = diamond('2', mockLog);
         
         expect(mockLog.mock.calls[0][0]).toBe('Error: Input is not an alphabetic character.');
     })
