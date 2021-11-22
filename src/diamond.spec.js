@@ -1,6 +1,7 @@
 const { charRange } = require('./diamond.js');
 const { createQuadrant } = require('./diamond.js');
 const { mirrorByYAxis } = require('./diamond.js');
+const { mirrorByXAxis } = require('./diamond.js');
 
 // Aufgabe a
 describe('charRange', () => {
@@ -58,8 +59,29 @@ describe('mirrorByYAxis', () => {
 })
 
 describe('mirrorByYAxis', () => {
-    it('should return array of arrays containing mirrored arrays ', () => {
+    it('should return array of arrays containing horizontally mirrored arrays', () => {
         expect(mirrorByYAxis(createQuadrant(charRange('a')))).toStrictEqual([
+            ['A'] 
+        ])
+    })
+})
+
+// Aufgabe d
+describe('mirrorByXAxis', () => {
+    it('should return array of arrays containing vertically mirrored arrays', () => {
+        expect(mirrorByXAxis(mirrorByYAxis(createQuadrant(charRange('c'))))).toStrictEqual([
+            ['-','-','A','-','-'], 
+            ['-','B','-','B','-'],
+            ['C','-','-','-','C'],
+            ['-','B','-','B','-'],
+            ['-','-','A','-','-']
+        ])
+    })
+})
+
+describe('mirrorByXAxis', () => {
+    it('should return array of arrays containing vertically mirrored arrays', () => {
+        expect(mirrorByXAxis(mirrorByYAxis(createQuadrant(charRange('a'))))).toStrictEqual([
             ['A'] 
         ])
     })

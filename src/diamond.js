@@ -41,7 +41,6 @@ function mirrorByYAxis(arrays) {
     let retArrays = [];
 
     arrays.forEach(array => {
-
         let mirroredArray = array.concat(array.slice(0, array.length-1).reverse());
 
         retArrays.push(mirroredArray);
@@ -50,9 +49,17 @@ function mirrorByYAxis(arrays) {
     return retArrays;
 }
 
+function mirrorByXAxis(arrays) {
+    
+    let mirroredArray = arrays.concat(arrays.slice(0, arrays.length-1).reverse());
+
+    return mirroredArray;
+}
+
 
 module.exports = {
     charRange,
     createQuadrant,
-    mirrorByYAxis
+    mirrorByYAxis,
+    mirrorByXAxis
 }
