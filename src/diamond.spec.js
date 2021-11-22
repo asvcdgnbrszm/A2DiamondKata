@@ -14,6 +14,12 @@ describe('charRange', () => {
 
 describe('charRange', () => {
     it('should return array with all characters up to given character', () => {
-        expect(charRange('d')).toEqual(expect.arrayContaining(['A','B','C','D']));
+        expect(charRange('A')).toStrictEqual(['A']);
+    })
+})
+
+describe('charRange', () => {
+    it('should return array with all characters up to given character', () => {
+        expect(charRange('d')).toStrictEqual(['A','B','C','D']);
     })
 })

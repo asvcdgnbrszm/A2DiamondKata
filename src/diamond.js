@@ -12,7 +12,7 @@ function charRange (char) {
         throw new Error('Input is not an alphabetic character.');
     }
 
-    const slicedAlphabet = alphabet.slice(0, index+1);
+    const slicedAlphabet = alphabet.slice(0, index);
 
     return slicedAlphabet;
 }
