@@ -1,6 +1,6 @@
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
-function charRange (char) {
+function charRange(char) {
     
     if (!char.toLowerCase) {
         throw new TypeError('Input is not a string.');
@@ -17,7 +17,7 @@ function charRange (char) {
     return slicedAlphabet;
 }
 
-function createQuadrant (charArray) {
+function createQuadrant(charArray) {
 
     let clearArray = []
     let retArrays = []
@@ -36,7 +36,24 @@ function createQuadrant (charArray) {
     return retArrays;
 }
 
+function mirrorByYAxis(arrays) {
+    
+    let retArrays = [];
+
+    arrays.forEach(array => {
+
+        let mirroredArray = array.slice(0, array.length-1).reverse();
+        let joinedArray = array.concat(mirroredArray);
+
+        retArrays.push(joinedArray);
+    });
+
+    return retArrays;
+}
+
+
 module.exports = {
     charRange,
-    createQuadrant
+    createQuadrant,
+    mirrorByYAxis
 }
