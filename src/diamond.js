@@ -17,6 +17,26 @@ function charRange (char) {
     return slicedAlphabet;
 }
 
+function createQuadrant (charArray) {
+
+    let clearArray = []
+    let retArrays = []
+
+    charArray.forEach(char => {
+        clearArray.push('-');
+    });
+
+    charArray.forEach(char => {
+        let array = clearArray.slice(0);
+        array[array.length - charArray.indexOf(char) - 1] = char;
+
+        retArrays.push(array);
+    });
+
+    return retArrays;
+}
+
 module.exports = {
-    charRange
+    charRange,
+    createQuadrant
 }
