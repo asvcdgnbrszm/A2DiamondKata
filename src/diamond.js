@@ -41,7 +41,6 @@ function mirrorByYAxis(arrays) {
     let retArrays = [];
 
     arrays.forEach(array => {
-
         let mirroredArray = array.concat(array.slice(0, array.length-1).reverse());
 
         retArrays.push(mirroredArray);
