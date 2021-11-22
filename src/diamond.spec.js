@@ -1,8 +1,19 @@
-const { sum } = require('./diamond.js')
+const { charRange } = require('./diamond.js')
 
-describe('sum', () => {
-    it('should return 0 for empty array', () => {
-        const result = sum([])
-        expect(result).toBe(0);
+describe('charRange', () => {
+    it('should throw a TypeError when input is not a string', () => {
+        expect(() => charRange([])).toThrow(TypeError);
+    })
+})
+
+describe('charRange', () => {
+    it('should throw an error for invalid character', () => {
+        expect(() => charRange('3')).toThrowError;
+    })
+})
+
+describe('charRange', () => {
+    it('should return array with all characters up to given character', () => {
+        expect(charRange('d')).toEqual(expect.arrayContaining(['A','B','C','D']));
     })
 })
