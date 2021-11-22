@@ -42,10 +42,9 @@ function mirrorByYAxis(arrays) {
 
     arrays.forEach(array => {
 
-        let mirroredArray = array.slice(0, array.length-1).reverse();
-        let joinedArray = array.concat(mirroredArray);
+        let mirroredArray = array.concat(array.slice(0, array.length-1).reverse());
 
-        retArrays.push(joinedArray);
+        retArrays.push(mirroredArray);
     });
 
     return retArrays;
