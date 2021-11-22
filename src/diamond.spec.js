@@ -6,6 +6,10 @@ const { diamond } = require('./diamond.js');
 
 // Aufgabe a
 describe('charRange', () => {
+    it('should throw a TypeError when input is empty', () => {
+        expect(() => charRange()).toThrow('No input given.');
+    })
+
     it('should throw a TypeError when input is not a string', () => {
         expect(() => charRange(3)).toThrow('Input is not a string.');
     })
