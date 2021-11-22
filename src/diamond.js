@@ -1,7 +1,7 @@
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 function charRange(char) {
-    
+
     if (!char.toLowerCase) {
         throw new TypeError('Input is not a string.');
     }
@@ -56,10 +56,35 @@ function mirrorByXAxis(arrays) {
     return mirroredArray;
 }
 
+function diamond(input, log) {
+
+    try {
+
+        letterArray = charRange(input);
+        quadrantArray = createQuadrant(letterArray);
+        yMirroredArray = mirrorByYAxis(quadrantArray);
+        xMirroredArray = mirrorByXAxis(yMirroredArray);
+        
+        let joinedString = '';
+
+        xMirroredArray.forEach(array => {
+            joinedString += array.join('') + '\n';
+        });
+    
+        log(joinedString);
+    }
+    catch(e) {
+
+        log(e.name + ": " + e.message);
+    }
+
+    
+}
 
 module.exports = {
     charRange,
     createQuadrant,
     mirrorByYAxis,
-    mirrorByXAxis
+    mirrorByXAxis,
+    diamond
 }

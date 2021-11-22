@@ -2,46 +2,47 @@ const { charRange } = require('./diamond.js');
 const { createQuadrant } = require('./diamond.js');
 const { mirrorByYAxis } = require('./diamond.js');
 const { mirrorByXAxis } = require('./diamond.js');
+const { diamond } = require('./diamond.js');
 
 // Aufgabe a
 describe('charRange', () => {
+    it('should throw a TypeError when input is empty', () => {
+        expect(() => charRange()).toThrow(TypeError);
+    })
+
     it('should throw a TypeError when input is not a string', () => {
         expect(() => charRange([])).toThrow(TypeError);
     })
-})
 
-describe('charRange', () => {
     it('should throw an error for invalid character', () => {
         expect(() => charRange('3')).toThrowError;
     })
-})
 
-describe('charRange', () => {
-    it('should return array with all characters up to given character', () => {
+    it('should return an array containing A', () => {
         expect(charRange('A')).toStrictEqual(['A']);
     })
-})
 
-describe('charRange', () => {
-    it('should return array with all characters up to given character', () => {
+    it('should return an array with all characters up to the given character (including)', () => {
         expect(charRange('d')).toStrictEqual(['A','B','C','D']);
     })
 })
 
 // Aufgabe b
 describe('createQuadrant', () => {
-    it('should return an array for each character', () => {
-        expect(createQuadrant(charRange('c'))).toStrictEqual([
+    it('should return an array for each character in the given array', () => {
+        letterArray = charRange('c');
+        quadrantArray = createQuadrant(letterArray);
+        expect(quadrantArray).toStrictEqual([
             ['-','-','A'], 
             ['-','B','-'],
             ['C','-','-']
         ])
     })
-})
 
-describe('createQuadrant', () => {
-    it('should return an array for each character', () => {
-        expect(createQuadrant(charRange('a'))).toStrictEqual([
+    it('should return an array with an array containing A', () => {
+        letterArray = charRange('a');
+        quadrantArray = createQuadrant(letterArray);
+        expect(quadrantArray).toStrictEqual([
             ['A']
         ])
     })
@@ -49,18 +50,22 @@ describe('createQuadrant', () => {
 
 // Aufgabe c
 describe('mirrorByYAxis', () => {
-    it('should return array of arrays containing mirrored arrays ', () => {
-        expect(mirrorByYAxis(createQuadrant(charRange('c')))).toStrictEqual([
+    it('should return an array of arrays containing horizontally mirrored arrays', () => {
+        letterArray = charRange('c');
+        quadrantArray = createQuadrant(letterArray);
+        yMirroredArray = mirrorByYAxis(quadrantArray);
+        expect(yMirroredArray).toStrictEqual([
             ['-','-','A','-','-'], 
             ['-','B','-','B','-'],
             ['C','-','-','-','C']
         ])
     })
-})
 
-describe('mirrorByYAxis', () => {
-    it('should return array of arrays containing horizontally mirrored arrays', () => {
-        expect(mirrorByYAxis(createQuadrant(charRange('a')))).toStrictEqual([
+    it('should return an array with an array containing A', () => {
+        letterArray = charRange('a');
+        quadrantArray = createQuadrant(letterArray);
+        yMirroredArray = mirrorByYAxis(quadrantArray);
+        expect(yMirroredArray).toStrictEqual([
             ['A'] 
         ])
     })
@@ -69,7 +74,11 @@ describe('mirrorByYAxis', () => {
 // Aufgabe d
 describe('mirrorByXAxis', () => {
     it('should return array of arrays containing vertically mirrored arrays', () => {
-        expect(mirrorByXAxis(mirrorByYAxis(createQuadrant(charRange('c'))))).toStrictEqual([
+        letterArray = charRange('c');
+        quadrantArray = createQuadrant(letterArray);
+        yMirroredArray = mirrorByYAxis(quadrantArray);
+        xMirroredArray = mirrorByXAxis(yMirroredArray);
+        expect(xMirroredArray).toStrictEqual([
             ['-','-','A','-','-'], 
             ['-','B','-','B','-'],
             ['C','-','-','-','C'],
@@ -77,12 +86,44 @@ describe('mirrorByXAxis', () => {
             ['-','-','A','-','-']
         ])
     })
-})
 
-describe('mirrorByXAxis', () => {
     it('should return array of arrays containing vertically mirrored arrays', () => {
-        expect(mirrorByXAxis(mirrorByYAxis(createQuadrant(charRange('a'))))).toStrictEqual([
+        letterArray = charRange('a');
+        quadrantArray = createQuadrant(letterArray);
+        yMirroredArray = mirrorByYAxis(quadrantArray);
+        xMirroredArray = mirrorByXAxis(yMirroredArray);
+        expect(xMirroredArray).toStrictEqual([
             ['A'] 
         ])
+    })
+})
+
+// Aufgabe e
+describe('diamond', () => {
+    it('should print a string containing the data of all arrays', () => {
+        
+        const mockLog = jest.fn();
+        
+        diamondString = diamond('c', mockLog);
+        
+        expect(mockLog.mock.calls[0][0]).toBe('--A--\n-B-B-\nC---C\n-B-B-\n--A--\n');
+    })
+
+    it('should print error message: not a string', () => {
+        
+        const mockLog = jest.fn();
+        
+        diamondString = diamond([], mockLog);
+        
+        expect(mockLog.mock.calls[0][0]).toBe('TypeError: Input is not a string.');
+    })
+
+    it('should print error message: not an alphabetic character', () => {
+        
+        const mockLog = jest.fn();
+        
+        diamondString = diamond('', mockLog);
+        
+        expect(mockLog.mock.calls[0][0]).toBe('Error: Input is not an alphabetic character.');
     })
 })
