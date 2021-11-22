@@ -87,7 +87,7 @@ describe('mirrorByXAxis', () => {
         ])
     })
 
-    it('should return array of arrays containing vertically mirrored arrays', () => {
+    it('should return array of arrays containing A', () => {
         letterArray = charRange('a');
         quadrantArray = createQuadrant(letterArray);
         yMirroredArray = mirrorByYAxis(quadrantArray);

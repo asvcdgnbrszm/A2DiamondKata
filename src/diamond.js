@@ -1,12 +1,12 @@
-const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-
 function charRange(char) {
+
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
     if (!char.toLowerCase) {
         throw new TypeError('Input is not a string.');
     }
 
-    let index = alphabet.indexOf(char.toUpperCase()) + 1;
+    const index = alphabet.indexOf(char.toUpperCase()) + 1;
 
     if (index === 0) {
         throw new Error('Input is not an alphabetic character.');
@@ -17,17 +17,18 @@ function charRange(char) {
     return slicedAlphabet;
 }
 
+
 function createQuadrant(charArray) {
 
-    let clearArray = []
-    let retArrays = []
+    const clearArray = []
+    const retArrays = []
 
     charArray.forEach(char => {
         clearArray.push('-');
     });
 
     charArray.forEach(char => {
-        let array = clearArray.slice(0);
+        const array = clearArray.slice(0);
         array[array.length - charArray.indexOf(char) - 1] = char;
 
         retArrays.push(array);
@@ -36,12 +37,13 @@ function createQuadrant(charArray) {
     return retArrays;
 }
 
+
 function mirrorByYAxis(arrays) {
     
-    let retArrays = [];
+    const retArrays = [];
 
     arrays.forEach(array => {
-        let mirroredArray = array.concat(array.slice(0, array.length-1).reverse());
+        const mirroredArray = array.concat(array.slice(0, array.length-1).reverse());
 
         retArrays.push(mirroredArray);
     });
@@ -49,12 +51,14 @@ function mirrorByYAxis(arrays) {
     return retArrays;
 }
 
+
 function mirrorByXAxis(arrays) {
     
-    let mirroredArray = arrays.concat(arrays.slice(0, arrays.length-1).reverse());
+    const mirroredArray = arrays.concat(arrays.slice(0, arrays.length-1).reverse());
 
     return mirroredArray;
 }
+
 
 function diamond(input, log) {
 
@@ -76,10 +80,9 @@ function diamond(input, log) {
     catch(e) {
 
         log(e.name + ": " + e.message);
-    }
-
-    
+    } 
 }
+
 
 module.exports = {
     charRange,
