@@ -1,18 +1,21 @@
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
 function charRange(char) {
 
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    let indexBase1 = 0;
 
-    if (!char.toLowerCase) {
-        throw new TypeError('Input is not a string.');
+    try {
+        indexBase1 = alphabet.indexOf(char.toUpperCase()) + 1;
+    } catch(err){
+        throw new Error('Input is not a string.')
     }
+    
 
-    const index = alphabet.indexOf(char.toUpperCase()) + 1;
-
-    if (index === 0) {
+    if (indexBase1 === 0) {
         throw new Error('Input is not an alphabetic character.');
     }
 
-    const slicedAlphabet = alphabet.slice(0, index);
+    const slicedAlphabet = alphabet.slice(0, indexBase1);
 
     return slicedAlphabet;
 }
@@ -43,7 +46,10 @@ function mirrorByYAxis(arrays) {
     const retArrays = [];
 
     arrays.forEach(array => {
-        const mirroredArray = array.concat(array.slice(0, array.length-1).reverse());
+        let mirroredArray = array.concat(
+            array.slice(0, array.length-1)
+            .reverse()
+        );
 
         retArrays.push(mirroredArray);
     });
