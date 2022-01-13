@@ -1,18 +1,14 @@
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 function charRange(char) {
-    
-    if (!char.toLowerCase) {
-        throw new TypeError('Input is not a string.');
-    }
 
-    let index = alphabet.indexOf(char.toUpperCase()) + 1;
+    let indexBase1 = alphabet.indexOf(char.toUpperCase()) + 1;
 
-    if (index === 0) {
+    if (indexBase1 === 0) {
         throw new Error('Input is not an alphabetic character.');
     }
 
-    const slicedAlphabet = alphabet.slice(0, index);
+    const slicedAlphabet = alphabet.slice(0, indexBase1);
 
     return slicedAlphabet;
 }
@@ -41,7 +37,10 @@ function mirrorByYAxis(arrays) {
     let retArrays = [];
 
     arrays.forEach(array => {
-        let mirroredArray = array.concat(array.slice(0, array.length-1).reverse());
+        let mirroredArray = array.concat(
+            array.slice(0, array.length-1)
+            .reverse()
+        );
 
         retArrays.push(mirroredArray);
     });
