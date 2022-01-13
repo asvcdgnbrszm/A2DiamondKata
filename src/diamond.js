@@ -46,10 +46,7 @@ function mirrorByYAxis(arrays) {
     const retArrays = [];
 
     arrays.forEach(array => {
-        let mirroredArray = array.concat(
-            array.slice(0, array.length-1)
-            .reverse()
-        );
+        let mirroredArray = mirrorArray(array);
 
         retArrays.push(mirroredArray);
     });
@@ -60,11 +57,18 @@ function mirrorByYAxis(arrays) {
 
 function mirrorByXAxis(arrays) {
     
-    const mirroredArray = arrays.concat(arrays.slice(0, arrays.length-1).reverse());
+    let mirroredArray = mirrorArray(arrays);
 
     return mirroredArray;
 }
 
+function mirrorArray(array){
+    let mirrored = array.concat(
+        array.slice(0, array.length-1)
+        .reverse()
+    );
+    return mirrored;
+}
 
 function diamond(input, log) {
 
