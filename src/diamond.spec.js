@@ -1,8 +1,14 @@
 const { charRange } = require('./diamond.js')
 
 describe('charRange', () => {
-    it('should throw a TypeError when input is not a string', () => {
+    it('should throw an error when input is not a string', () => {
         expect(() => charRange([])).toThrowError;
+    })
+    it('should throw an error when input is not a string', () => {
+        expect(() => charRange(['a'])).toThrowError;
+    })
+    it('should throw an error when input is empty', () => {
+        expect(() => charRange('')).toThrowError;
     })
     it('should throw an error for invalid character', () => {
         expect(() => charRange('3')).toThrowError;
